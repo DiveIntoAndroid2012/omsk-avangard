@@ -3,12 +3,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/hello_world"
-        tools:context=".MainActivity" />
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/main_matches"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Матчи" />
+
+        <Button
+            android:id="@+id/main_tables"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Таблица" />
+
+    </LinearLayout>
 
 </RelativeLayout>
