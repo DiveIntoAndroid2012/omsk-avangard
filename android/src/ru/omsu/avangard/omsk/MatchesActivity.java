@@ -3,7 +3,7 @@ package ru.omsu.avangard.omsk;
 import android.app.Activity;
 import android.os.Bundle;
 
-public class MatchesActivity extends Activity {
+public class MatchesActivity extends LifecycleLogActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
