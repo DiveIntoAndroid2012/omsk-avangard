@@ -3,5 +3,8 @@
     <string name="app_name">Омский Авангард</string>
     <string name="menu_settings">Настройки</string>
     <string name="title_activity_main">Омский Авангард</string>
+    <string name="matches">Матчи</string>
+    <string name="tables">Таблица</string>
+    <string name="awesome_info">Необходимая информация</string>
 
 </resources>

@@ -3,5 +3,8 @@
     <string name="app_name">Avangard Omsk</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Avangard Omsk</string>
+    <string name="matches">Matches</string>
+    <string name="tables">Standings</string>
+    <string name="awesome_info">Awesome info</string>
 
 </resources>
