@@ -6,5 +6,6 @@
     <string name="matches">Матчи</string>
     <string name="tables">Таблица</string>
     <string name="awesome_info">Необходимая информация</string>
+    <string name="about">О программе</string>
 
 </resources>
