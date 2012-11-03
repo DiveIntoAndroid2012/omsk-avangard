@@ -9,6 +9,7 @@
         android:id="@+id/main_matches"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:padding="30dp"
         android:layout_marginBottom="10dp"
         android:text="@string/matches" />
 
