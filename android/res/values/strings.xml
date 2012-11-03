@@ -7,5 +7,6 @@
     <string name="tables">Standings</string>
     <string name="awesome_info">Awesome info</string>
     <string name="about">About</string>
+    <string name="match_start_time">Время начала матча</string>
 
 </resources>

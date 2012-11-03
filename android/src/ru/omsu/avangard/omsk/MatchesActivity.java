@@ -1,7 +1,8 @@
 package ru.omsu.avangard.omsk;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -13,44 +14,59 @@ public class MatchesActivity extends ListActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-	    super.onCreate(savedInstanceState);
-	    initListView();
+		super.onCreate(savedInstanceState);
+		initListView();
 	}
 
-	protected void initListView(){
+	protected void initListView() {
 		getListView().setDividerHeight(0);
 		final List<Match> matches = stubMakeMatches();
-	    final ListAdapter adapter = new MatchesListAdapter(this, matches);
-	    setListAdapter(adapter);
+		final ListAdapter adapter = new MatchesListAdapter(this, matches);
+		setListAdapter(adapter);
 	}
-	
-	private List<Match> stubMakeMatches(){
-		final Team avangard = new Team("Авангард", "");
-		final Team dynamo = new Team("Динамо", "");
-		final Team akbars = new Team("Ак Барс", "");
-		final Team traktor = new Team("Трактор", "");
-		final Team ugra = new Team("Югра", "");
-		final Team vityaz = new Team("Витязь", "");
-		final Calendar calendar = Calendar.getInstance();
-		
-		final List<Match> matches = new ArrayList<Match>();
-		matches.add(new Match(avangard, dynamo, stubMakeMatchDate("10/10/12"), "4:3"));
-		matches.add(new Match(akbars, avangard, stubMakeMatchDate("13/10/12"), "1:0"));
-		matches.add(new Match(avangard, traktor, stubMakeMatchDate("15/10/12"), "1:2"));
-		matches.add(new Match(avangard, ugra, stubMakeMatchDate("17/10/12"), "5:1"));
-		matches.add(new Match(vityaz, avangard, stubMakeMatchDate("19/10/12"), "2:3"));
-		matches.add(new Match(dynamo, avangard, stubMakeMatchDate("21/10/12"), "1:0"));
-		matches.add(new Match(avangard, dynamo, stubMakeMatchDate("10/10/12"), "4:3"));
-		matches.add(new Match(akbars, avangard, stubMakeMatchDate("13/10/12"), "1:0"));
-		matches.add(new Match(avangard, traktor, stubMakeMatchDate("15/10/12"), "1:2"));
-		matches.add(new Match(avangard, ugra, stubMakeMatchDate("17/10/12"), "5:1"));
-		matches.add(new Match(vityaz, avangard, stubMakeMatchDate("19/10/12"), "2:3"));
-		matches.add(new Match(dynamo, avangard, stubMakeMatchDate("21/10/12"), "1:0"));
-		
-		return matches;
+
+	private List<Match> stubMakeMatches() {
+		try {
+			final Team avangard = new Team("Авангард", "");
+			final Team dynamo = new Team("Динамо", "");
+			final Team akbars = new Team("Ак Барс", "");
+			final Team traktor = new Team("Трактор", "");
+			final Team ugra = new Team("Югра", "");
+			final Team vityaz = new Team("Витязь", "");
+
+			final List<Match> matches = new ArrayList<Match>();
+			matches.add(new Match(avangard, dynamo,
+					stubMakeMatchDate("10/10/12"), "4:3"));
+			matches.add(new Match(akbars, avangard,
+					stubMakeMatchDate("13/10/12"), "1:0"));
+			matches.add(new Match(avangard, traktor,
+					stubMakeMatchDate("15/10/12"), "1:2"));
+			matches.add(new Match(avangard, ugra,
+					stubMakeMatchDate("17/10/12"), "5:1"));
+			matches.add(new Match(vityaz, avangard,
+					stubMakeMatchDate("19/10/12"), "2:3"));
+			matches.add(new Match(dynamo, avangard,
+					stubMakeMatchDate("21/10/12"), "1:0"));
+			matches.add(new Match(avangard, dynamo,
+					stubMakeMatchDate("25/10/12"), "4:3"));
+			matches.add(new Match(akbars, avangard,
+					stubMakeMatchDate("31/10/12"), "1:0"));
+			matches.add(new Match(avangard, traktor,
+					stubMakeMatchDate("5/11/12"), null));
+			matches.add(new Match(avangard, ugra,
+					stubMakeMatchDate("12/11/12"), null));
+			matches.add(new Match(vityaz, avangard,
+					stubMakeMatchDate("19/11/12"), null));
+			matches.add(new Match(dynamo, avangard,
+					stubMakeMatchDate("21/11/12"), null));
+			return matches;
+		} catch (ParseException e) {
+			return null;
+		}
 	}
-	
-	private Date stubMakeMatchDate(String date){
-		return new Date();
+
+	private Date stubMakeMatchDate(String date) throws ParseException {
+		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return sdf.parse(date);
 	}
 }

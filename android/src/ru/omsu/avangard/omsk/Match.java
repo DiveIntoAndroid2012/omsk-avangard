@@ -7,8 +7,8 @@ public class Match {
 	private Team mTeam1;
 	private Team mTeam2;
 	private Date mTime;
-	private int mTeam1Goals;
-	private int mTeam2Goals;
+	private int mTeam1Goals = -1;
+	private int mTeam2Goals = -1;
 	
 	public Match(Team team1, Team team2, Date startTime, String result) {
 		this.mTeam1 = team1;
@@ -43,5 +43,9 @@ public class Match {
 	
 	public int getTeam2Goals(){
 		return mTeam2Goals;
+	}
+	
+	public boolean hasResult(){
+		return mTeam1Goals >=0 && mTeam2Goals >= 0;
 	}
 }
