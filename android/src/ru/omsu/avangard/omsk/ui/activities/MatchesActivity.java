@@ -46,10 +46,10 @@ public class MatchesActivity extends ListActivity {
 							for(GameModel game: response.gamesModel.games){
 								matches.add(
 										new Match(
-												new Team("Team1", ""), 
-												new Team("Team2", ""), 
+												new Team(game.firstTeam.name, ""), 
+												new Team(game.secondTeam.name, ""), 
 												new Date(), 
-												game.id + ":" + game.id)
+												game.firstTeam.scores + ":" + game.secondTeam.scores)
 										);
 							}
 							final ListAdapter adapter = new MatchesListAdapter(MatchesActivity.this, matches);

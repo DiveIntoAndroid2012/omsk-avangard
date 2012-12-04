@@ -49,16 +49,52 @@ public class Responses {
 
 		private static final long serialVersionUID = 2774048380287792954L;
 
-		public GamesModel gamesModel;
-		public static class GameModel{
-			public long id;
-		}
-
 		public static class GamesModel{
 			@SerializedName("Games")
 			public List<GameModel> games;
 		}
 		
+		public static class GameModel{
+			@SerializedName("Id")
+			public long id;
+			
+			@SerializedName("FirstTeam")
+			public FirstTeamModel firstTeam;
+			
+			@SerializedName("SecondTeam")
+			public FirstTeamModel secondTeam;
+		}
+		
+		public static class FirstTeamModel{
+			@SerializedName("FirstTeamId")
+			public long id;
+			
+			@SerializedName("Name")
+			public String name;
+			
+			@SerializedName("Scores")
+			public String scores;
+			
+			@SerializedName("Logo")
+			public String logo;
+		}
+		
+		public static class SecondTeamModel{
+			@SerializedName("SecondTeamId")
+			public long id;
+			
+			@SerializedName("Name")
+			public String name;
+			
+			@SerializedName("Scores")
+			public String scores;
+			
+			@SerializedName("Logo")
+			public String logo;
+		}
+		
+		public GamesModel gamesModel;
+
 		@Override
 		public void fromXML(String xml) {
 			super.fromXML(xml);
