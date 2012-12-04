@@ -99,4 +99,11 @@ public class ProtocolUtils {
 		return type;
 	}
 
+	public static String getLogoUrl(String logo){
+		Uri.Builder b = new Uri.Builder();
+		b.scheme(Requests.HTTP);
+		b.authority(Requests.BASE_AUTHORITY);
+		b.appendEncodedPath("images/logo/" + logo);
+		return b.build().toString();
+	}
 }

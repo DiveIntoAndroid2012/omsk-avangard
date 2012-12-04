@@ -12,6 +12,7 @@ import ru.omsu.avangard.omsk.data.Team;
 import ru.omsu.avangard.omsk.services.APICallBuilder;
 import ru.omsu.avangard.omsk.services.APIService.APIResultReceiver;
 import ru.omsu.avangard.omsk.services.APIService.Result;
+import ru.omsu.avangard.omsk.services.protocol.ProtocolUtils;
 import ru.omsu.avangard.omsk.services.protocol.Requests;
 import ru.omsu.avangard.omsk.services.protocol.Responses.GetGamesResponse;
 import ru.omsu.avangard.omsk.services.protocol.Responses.GetGamesResponse.GameModel;
@@ -51,8 +52,8 @@ public class MatchesActivity extends ListActivity {
 								if(game.firstTeam.id == 3983 || game.secondTeam.id == 3983){
 									matches.add(
 											new Match(
-													new Team(game.firstTeam.name, ""), 
-													new Team(game.secondTeam.name, ""), 
+													new Team(game.firstTeam.name, ProtocolUtils.getLogoUrl(game.firstTeam.logo)), 
+													new Team(game.secondTeam.name, ProtocolUtils.getLogoUrl(game.secondTeam.logo)), 
 													safeParseDate(game.date, sdf),
 													game.firstTeam.scores + ":" + game.secondTeam.scores)
 											);
