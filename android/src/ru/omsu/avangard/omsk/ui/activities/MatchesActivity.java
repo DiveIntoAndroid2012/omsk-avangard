@@ -20,6 +20,7 @@ import ru.omsu.avangard.omsk.ui.adapters.MatchesListAdapter;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListAdapter;
 
 public class MatchesActivity extends ListActivity {
@@ -35,42 +36,61 @@ public class MatchesActivity extends ListActivity {
 		getListView().setDividerHeight(0);
 	}
 
-	protected void loadMatches(){
+	protected void loadMatches() {
 		final Intent apiCall = APICallBuilder.makeIntent(
 				this,
-				Requests.Games.getCurrentTourmentGames(), 
+				Requests.Games.getCurrentTourmentGames(),
 				GetGamesResponse.class,
 				new APIResultReceiver() {
-					
+
 					@Override
 					public void onResult(Result result) {
-						if(result.isOk()){
+						if (result.isOk()) {
 							final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-							final GetGamesResponse response = (GetGamesResponse)result.getResponse();
+							final Date now = new Date();
+							final GetGamesResponse response = (GetGamesResponse) result.getResponse();
+							int counter = 0;
 							final List<Match> matches = new ArrayList<Match>();
-							for(GameModel game: response.gamesModel.games){
-								if(game.firstTeam.id == 3983 || game.secondTeam.id == 3983){
+							for (GameModel game : response.gamesModel.games) {
+								if (game.firstTeam.id == 3983 || game.secondTeam.id == 3983) {
+									final Date matchDate = safeParseDate(game.date, sdf);
 									matches.add(
 											new Match(
-													new Team(game.firstTeam.name, ProtocolUtils.getLogoUrl(game.firstTeam.logo)), 
-													new Team(game.secondTeam.name, ProtocolUtils.getLogoUrl(game.secondTeam.logo)), 
-													safeParseDate(game.date, sdf),
+													new Team(game.firstTeam.name, ProtocolUtils.getLogoUrl(game.firstTeam.logo)),
+													new Team(game.secondTeam.name, ProtocolUtils.getLogoUrl(game.secondTeam.logo)),
+													matchDate,
 													game.firstTeam.scores + ":" + game.secondTeam.scores)
 											);
+									if (matchDate.before(now)) {
+										++counter;
+									}
 								}
 							}
 							final ListAdapter adapter = new MatchesListAdapter(MatchesActivity.this, matches);
 							setListAdapter(adapter);
+							getListView().setVisibility(View.INVISIBLE);
+							final Integer freezedCounter = counter;
+							getListView().postDelayed(new Runnable() {
+								
+								@Override
+								public void run() {
+									final int listViewHeight = getListView().getHeight();
+									final int itemHeight = getListView().getChildAt(0).getHeight();
+									final float itemsPerScreen = (float) listViewHeight / itemHeight;
+									getListView().setSelection(Math.max(0, freezedCounter.intValue() - (int) (itemsPerScreen * 0.5)));		
+									getListView().setVisibility(View.VISIBLE);
+								}
+							}, 300);
 						}
 					}
 				});
 		startService(apiCall);
 	}
-	
-	protected Date safeParseDate(String date, SimpleDateFormat sdf){
-		try{
+
+	protected Date safeParseDate(String date, SimpleDateFormat sdf) {
+		try {
 			return sdf.parse(date);
-		} catch(ParseException e){
+		} catch (ParseException e) {
 			return new Date();
 		}
 	}
