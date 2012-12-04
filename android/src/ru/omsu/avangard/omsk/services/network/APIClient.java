@@ -53,7 +53,7 @@ public class APIClient {
 
 			Log.v(TAG, ": HTTP response code = " + responseCode);
 			if (responseCode == HttpStatus.SC_OK) {
-				String responseData = EntityUtils.toString(httpResponse.getEntity());
+				String responseData = EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
 				Log.v(TAG, ": HTTP response data: ");
 				Log.v(TAG, responseData);
 				try {
