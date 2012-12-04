@@ -62,7 +62,11 @@ public class Responses {
 			public FirstTeamModel firstTeam;
 			
 			@SerializedName("SecondTeam")
-			public FirstTeamModel secondTeam;
+			public SecondTeamModel secondTeam;
+			
+			@SerializedName("Date")
+			public String date;
+			
 		}
 		
 		public static class FirstTeamModel{
@@ -119,6 +123,5 @@ public class Responses {
 		sGsonXml = new GsonXmlBuilder()
 				.setXmlParserCreator(parserCreator)
 				.create();
-
 	}
 }

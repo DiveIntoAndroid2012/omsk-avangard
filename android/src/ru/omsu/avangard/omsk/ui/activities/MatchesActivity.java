@@ -1,8 +1,11 @@
 package ru.omsu.avangard.omsk.ui.activities;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import ru.omsu.avangard.omsk.data.Match;
 import ru.omsu.avangard.omsk.data.Team;
@@ -41,16 +44,19 @@ public class MatchesActivity extends ListActivity {
 					@Override
 					public void onResult(Result result) {
 						if(result.isOk()){
+							final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 							final GetGamesResponse response = (GetGamesResponse)result.getResponse();
 							final List<Match> matches = new ArrayList<Match>();
 							for(GameModel game: response.gamesModel.games){
-								matches.add(
-										new Match(
-												new Team(game.firstTeam.name, ""), 
-												new Team(game.secondTeam.name, ""), 
-												new Date(), 
-												game.firstTeam.scores + ":" + game.secondTeam.scores)
-										);
+								if(game.firstTeam.id == 3983 || game.secondTeam.id == 3983){
+									matches.add(
+											new Match(
+													new Team(game.firstTeam.name, ""), 
+													new Team(game.secondTeam.name, ""), 
+													safeParseDate(game.date, sdf),
+													game.firstTeam.scores + ":" + game.secondTeam.scores)
+											);
+								}
 							}
 							final ListAdapter adapter = new MatchesListAdapter(MatchesActivity.this, matches);
 							setListAdapter(adapter);
@@ -58,6 +64,14 @@ public class MatchesActivity extends ListActivity {
 					}
 				});
 		startService(apiCall);
+	}
+	
+	protected Date safeParseDate(String date, SimpleDateFormat sdf){
+		try{
+			return sdf.parse(date);
+		} catch(ParseException e){
+			return new Date();
+		}
 	}
 
 }
