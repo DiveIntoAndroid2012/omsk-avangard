@@ -1,9 +1,9 @@
-package ru.omsu.avangard.omsk;
+package ru.omsu.avangard.omsk.data;
 
 public class Team {
 	private String name;
 	private String logo;
-	
+
 	public Team(String name, String logo) {
 		super();
 		this.name = name;
@@ -17,5 +17,5 @@ public class Team {
 	public String getLogo() {
 		return logo;
 	}
-	
+
 }

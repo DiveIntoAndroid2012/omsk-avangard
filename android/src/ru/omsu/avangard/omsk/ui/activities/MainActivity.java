@@ -1,5 +1,9 @@
-package ru.omsu.avangard.omsk;
+package ru.omsu.avangard.omsk.ui.activities;
 
+import ru.omsu.avangard.omsk.R;
+import ru.omsu.avangard.omsk.R.id;
+import ru.omsu.avangard.omsk.R.layout;
+import ru.omsu.avangard.omsk.R.menu;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;

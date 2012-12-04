@@ -1,6 +1,7 @@
-package ru.omsu.avangard.omsk;
+package ru.omsu.avangard.omsk.data;
 
 import java.util.Date;
+
 
 public class Match {
 

@@ -1,10 +1,14 @@
-package ru.omsu.avangard.omsk;
+package ru.omsu.avangard.omsk.ui.activities;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import ru.omsu.avangard.omsk.data.Match;
+import ru.omsu.avangard.omsk.data.Team;
+import ru.omsu.avangard.omsk.ui.adapters.MatchesListAdapter;
 
 import android.app.ListActivity;
 import android.os.Bundle;
@@ -27,12 +31,12 @@ public class MatchesActivity extends ListActivity {
 
 	private List<Match> stubMakeMatches() {
 		try {
-			final Team avangard = new Team("Авангард", "");
-			final Team dynamo = new Team("Динамо", "");
-			final Team akbars = new Team("Ак Барс", "");
-			final Team traktor = new Team("Трактор", "");
-			final Team ugra = new Team("Югра", "");
-			final Team vityaz = new Team("Витязь", "");
+			final Team avangard = new Team("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "");
+			final Team dynamo = new Team("пїЅпїЅпїЅпїЅпїЅпїЅ", "");
+			final Team akbars = new Team("пїЅпїЅ пїЅпїЅпїЅпїЅ", "");
+			final Team traktor = new Team("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "");
+			final Team ugra = new Team("пїЅпїЅпїЅпїЅ", "");
+			final Team vityaz = new Team("пїЅпїЅпїЅпїЅпїЅпїЅ", "");
 
 			final List<Match> matches = new ArrayList<Match>();
 			matches.add(new Match(avangard, dynamo,

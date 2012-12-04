@@ -1,9 +1,14 @@
-package ru.omsu.avangard.omsk;
+package ru.omsu.avangard.omsk.ui.adapters;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import ru.omsu.avangard.omsk.R;
+import ru.omsu.avangard.omsk.R.id;
+import ru.omsu.avangard.omsk.R.layout;
+import ru.omsu.avangard.omsk.data.Match;
 
 import android.content.Context;
 import android.view.LayoutInflater;
