@@ -1,9 +1,6 @@
-package ru.omsu.avangard.omsk.ui.activities;
+package ru.omsu.diveintoandroid.omskavangard.ui.activities;
 
-import ru.omsu.avangard.omsk.R;
-import ru.omsu.avangard.omsk.R.id;
-import ru.omsu.avangard.omsk.R.layout;
-import ru.omsu.avangard.omsk.R.menu;
+import ru.omsu.diveintoandroid.omskavangard.R;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -45,4 +42,5 @@ public class MainActivity extends LifecycleLogActivity {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
+    
 }

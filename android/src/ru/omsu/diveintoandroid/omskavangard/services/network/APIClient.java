@@ -1,4 +1,4 @@
-package ru.omsu.avangard.omsk.services.network;
+package ru.omsu.diveintoandroid.omskavangard.services.network;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -23,9 +23,9 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
-import ru.omsu.avangard.omsk.services.protocol.RequestBuildingException;
-import ru.omsu.avangard.omsk.services.protocol.Requests.Request;
-import ru.omsu.avangard.omsk.services.protocol.Responses.Response;
+import ru.omsu.diveintoandroid.omskavangard.services.protocol.RequestBuildingException;
+import ru.omsu.diveintoandroid.omskavangard.services.protocol.Requests.Request;
+import ru.omsu.diveintoandroid.omskavangard.services.protocol.Responses.Response;
 import android.util.Log;
 
 public class APIClient {

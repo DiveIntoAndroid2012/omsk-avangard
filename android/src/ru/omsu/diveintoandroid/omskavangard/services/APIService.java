@@ -1,9 +1,9 @@
-package ru.omsu.avangard.omsk.services;
+package ru.omsu.diveintoandroid.omskavangard.services;
 
-import ru.omsu.avangard.omsk.services.network.APIClient;
-import ru.omsu.avangard.omsk.services.network.APIClientException;
-import ru.omsu.avangard.omsk.services.protocol.Requests.Request;
-import ru.omsu.avangard.omsk.services.protocol.Responses.Response;
+import ru.omsu.diveintoandroid.omskavangard.services.network.APIClient;
+import ru.omsu.diveintoandroid.omskavangard.services.network.APIClientException;
+import ru.omsu.diveintoandroid.omskavangard.services.protocol.Requests.Request;
+import ru.omsu.diveintoandroid.omskavangard.services.protocol.Responses.Response;
 import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;

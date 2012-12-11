@@ -1,8 +1,8 @@
-package ru.omsu.avangard.omsk.services;
+package ru.omsu.diveintoandroid.omskavangard.services;
 
-import ru.omsu.avangard.omsk.services.APIService.APIResultReceiver;
-import ru.omsu.avangard.omsk.services.protocol.Requests.Request;
-import ru.omsu.avangard.omsk.services.protocol.Responses.Response;
+import ru.omsu.diveintoandroid.omskavangard.services.APIService.APIResultReceiver;
+import ru.omsu.diveintoandroid.omskavangard.services.protocol.Requests.Request;
+import ru.omsu.diveintoandroid.omskavangard.services.protocol.Responses.Response;
 import android.content.Context;
 import android.content.Intent;
 

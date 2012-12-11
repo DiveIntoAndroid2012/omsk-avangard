@@ -1,4 +1,4 @@
-package ru.omsu.avangard.omsk.services.protocol;
+package ru.omsu.diveintoandroid.omskavangard.services.protocol;
 
 import java.io.Serializable;
 import java.util.List;
@@ -67,6 +67,8 @@ public class Responses {
 			@SerializedName("Date")
 			public String date;
 			
+			@SerializedName("Status")
+			public int status;
 		}
 		
 		public static class FirstTeamModel{

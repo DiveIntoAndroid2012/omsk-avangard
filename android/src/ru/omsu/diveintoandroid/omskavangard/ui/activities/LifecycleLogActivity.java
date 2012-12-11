@@ -1,4 +1,4 @@
-package ru.omsu.avangard.omsk.ui.activities;
+package ru.omsu.diveintoandroid.omskavangard.ui.activities;
 
 import android.app.Activity;
 import android.os.Bundle;

@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ru.omsu.avangard.omsk"
+    package="ru.omsu.diveintoandroid.omskavangard"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="9"
-        android:targetSdkVersion="15" />
+        android:targetSdkVersion="17" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -28,6 +28,9 @@
 
         <service android:name=".services.APIService" >
         </service>
+        <provider android:name=".provider.HockeyProvider"
+            android:authorities="ru.omsu.diveintoandroid.avangardomsk" 
+            android:exported="false"/>
     </application>
 
 </manifest>

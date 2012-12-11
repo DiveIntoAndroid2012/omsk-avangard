@@ -1,4 +1,4 @@
-package ru.omsu.avangard.omsk.services.network;
+package ru.omsu.diveintoandroid.omskavangard.services.network;
 
 import java.io.IOException;
 import java.io.InputStream;

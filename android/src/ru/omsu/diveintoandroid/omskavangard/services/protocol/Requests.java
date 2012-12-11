@@ -1,4 +1,4 @@
-package ru.omsu.avangard.omsk.services.protocol;
+package ru.omsu.diveintoandroid.omskavangard.services.protocol;
 
 import java.io.Serializable;
 import java.util.ArrayList;

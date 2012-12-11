@@ -1,4 +1,4 @@
-package ru.omsu.avangard.omsk.data;
+package ru.omsu.diveintoandroid.omskavangard.data;
 
 import java.util.Date;
 
