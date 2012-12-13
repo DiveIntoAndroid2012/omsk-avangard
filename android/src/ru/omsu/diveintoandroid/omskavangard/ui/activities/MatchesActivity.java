@@ -28,6 +28,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.Toast;
 
 public class MatchesActivity extends ListActivity {
 
@@ -100,6 +101,11 @@ public class MatchesActivity extends ListActivity {
 							bulkInsertCollection(DataContract.Matches.CONTENT_URI, matches);
 							final Cursor matchesCursor = getContentResolver().query(DataContract.MatchesDetailed.CONTENT_URI, null, null, null, null);
 							mListAdapter.swapCursor(matchesCursor);
+						} else if (result.hasNetworkError()){
+							Toast.makeText(MatchesActivity.this, "Network error durind update matches. Please check your Internet connection!", Toast.LENGTH_SHORT).show();
+						} else{
+							//dialog about sent report
+							Toast.makeText(MatchesActivity.this, "Unexpected error.", Toast.LENGTH_SHORT).show();
 						}
 					}
 				});

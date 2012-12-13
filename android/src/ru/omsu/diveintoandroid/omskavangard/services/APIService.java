@@ -3,6 +3,7 @@ package ru.omsu.diveintoandroid.omskavangard.services;
 import ru.omsu.diveintoandroid.omskavangard.services.network.APIClient;
 import ru.omsu.diveintoandroid.omskavangard.services.network.APIClientException;
 import ru.omsu.diveintoandroid.omskavangard.services.protocol.Requests.Request;
+import ru.omsu.diveintoandroid.omskavangard.services.protocol.Responses.BaseResponse;
 import ru.omsu.diveintoandroid.omskavangard.services.protocol.Responses.Response;
 import android.app.IntentService;
 import android.content.Intent;
@@ -15,23 +16,35 @@ public class APIService extends IntentService {
 
 	public static final class Result {
 		public static final int STATUS_OK = 0;
-		public static final int STATUS_ERROR_NETWORK = 1;
-		public static final int STATUS_ERROR_INNER = 3;
-
+		public static final int STATUS_NETWORK_ERROR = 1;
+		public static final int STATUS_ERROR = 2;
+		
 		private Response mResponse;
 		private Exception mException;
 		private int mStatus = STATUS_OK;
-
+		
 		public Response getResponse() {
 			return mResponse;
 		}
 
-		public boolean isError() {
-			return !isOk();
-		}
-
-		public boolean isOk() {
+		public boolean hasResponseError(){
+			if(mResponse instanceof BaseResponse){
+				return ((BaseResponse)mResponse).hasError();
+			}
 			return true;
+		}
+		
+
+		public boolean hasNetworkError(){
+			return mStatus == STATUS_NETWORK_ERROR;
+		}
+		
+		public boolean hasInnerError(){
+			return hasResponseError() || mStatus == STATUS_ERROR;
+		}
+		
+		public boolean isOk() {
+			return mStatus == STATUS_OK && !hasResponseError();
 		}
 
 		public Exception getException() {
@@ -56,7 +69,7 @@ public class APIService extends IntentService {
 			final Result result = new Result();
 			result.mResponse = (Response) resultData.getSerializable("response");
 			result.mException = (Exception) resultData.getSerializable("error");
-			result.mStatus = resultCode;
+			result.mStatus = resultData.getInt("status");
 			onResult(result);
 		}
 	}
@@ -86,21 +99,21 @@ public class APIService extends IntentService {
 		final Class<? extends Response> responseClass = (Class<? extends Response>) intent.getSerializableExtra(INTENT_RESPONSE_CLASS_KEY);
 		final ResultReceiver receiver = intent.getParcelableExtra(INTENT_RECEIVER_KEY);
 		final Bundle resultData = new Bundle();
-		int status = Result.STATUS_OK;
 		try {
 			final Response response = mClient.execute(request, responseClass);
 			resultData.putSerializable("response", response);
+			resultData.putSerializable("status", Result.STATUS_OK);
 		} catch (APIClientException e) {
 			Log.d(TAG, "client exception", e);
 			resultData.putSerializable("error", e);
-			status = clientExceptionToStatus(e);
+			resultData.putSerializable("status", clientExceptionToStatus(e));
 		} catch (Exception e) {
 			Log.w(TAG, "unexpected inner exception", e);
 			resultData.putSerializable("error", e);
-			status = Result.STATUS_ERROR_INNER;
+			resultData.putSerializable("status", Result.STATUS_ERROR);
 		}
 		if (receiver != null) {
-			receiver.send(status, resultData);
+			receiver.send(0, resultData);
 		}
 	}
 
@@ -108,9 +121,9 @@ public class APIService extends IntentService {
 		if (e.errorType == APIClientException.NO_ERROR) {
 			return Result.STATUS_OK;
 		} else if (e.errorType == APIClientException.ERROR_NETWORK || e.errorType == APIClientException.ERROR_NETWORK_STATUS) {
-			return Result.STATUS_ERROR_NETWORK;
+			return Result.STATUS_NETWORK_ERROR;
 		} else {
-			return Result.STATUS_ERROR_INNER;
+			return Result.STATUS_ERROR;
 		}
 	}
 
