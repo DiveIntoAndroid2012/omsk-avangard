@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import ru.omsu.diveintoandroid.omskavangard.R;
 import ru.omsu.diveintoandroid.omskavangard.application.Constants;
 import ru.omsu.diveintoandroid.omskavangard.provider.DataContract;
 import ru.omsu.diveintoandroid.omskavangard.services.APICallBuilder;
@@ -102,7 +103,7 @@ public class MatchesActivity extends ListActivity {
 							final Cursor matchesCursor = getContentResolver().query(DataContract.MatchesDetailed.CONTENT_URI, null, null, null, null);
 							mListAdapter.swapCursor(matchesCursor);
 						} else if (result.hasNetworkError()){
-							Toast.makeText(MatchesActivity.this, "Network error durind update matches. Please check your Internet connection!", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MatchesActivity.this, R.string.network_error_durind_update_matches, Toast.LENGTH_SHORT).show();
 						} else{
 							//dialog about sent report
 							Toast.makeText(MatchesActivity.this, "Unexpected error.", Toast.LENGTH_SHORT).show();

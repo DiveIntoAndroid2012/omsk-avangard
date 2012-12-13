@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:background="#bbbbbb"
             android:padding="5dp"
-            android:text="@string/match_start_time"
+            android:text="Match start time"
             android:textSize="19sp"
             android:textStyle="bold" />
 

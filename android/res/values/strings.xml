@@ -7,6 +7,7 @@
     <string name="tables">Standings</string>
     <string name="awesome_info">Awesome info</string>
     <string name="about">About</string>
-    <string name="match_start_time">Время начала матча</string>
+    <string name="network_error_durind_update_matches">Network error durind update matches. Please check your Internet connection!</string>
+    <string name="unexpected_error">Unexpected error</string>
 
 </resources>
